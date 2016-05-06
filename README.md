@@ -1,69 +1,53 @@
-peer-set JavaScript implementation
+peer-set-cyclon JavaScript implementation
 ==================================
 
-> Abstraction on a set of peers
+> Set of neighboors for the gossip protocol Cyclon
+
+Builds on top of [peer-set](https://github.com/nicola/js-peer-set)
 
 # Example
 
 ```js
-const PeerSet = require('peer-set')
+const PeerSet = require('peer-set-cyclon')
 const PeerInfo = require('peer-info')
 
 const Alice = new PeerInfo()
 const Bob = new PeerInfo()
 const Charles = new PeerInfo()
-const Eve = new PeerInfo()
 
-// Set up a PeerSet with 3 peers and a limit of 3 peers
-const neighbors = new PeerSet([Alice, Bob, Charles], 3)
+const neighbors = new PeerSet([Alice, Bob], 3)
+neighbors.updateAge()
+// Alice.age == 1
+// Bob.age == 1
+neightbors.add([Charles])
+neighbors.updateAge()
+// Alice.age == 2
+// Bob.age == 2
+// Charles.age == 1
 
-// Get two random peers
-const replace = neighbors.sample(2)
-// => [Alice, Bob]
-
-// Add Eve, and in case we go beyond 3 peers (we will! we are already 3!)
-// Then remove [Alice, Bob] in this order
-neightbors.add([Eve], replace)
-
-neighbors.peers
-// => { aliceid: Alice, bobid: Bob, eveid: Eve }
+neighbors.oldest()
+// Alice
 ```
 
 # API
 
 ```js
-const PeerSet = require('peer-set')
+const PeerSetCyclon = require('peer-set-cyclon')
 ```
 
-## const set = new PeerSet(peers, {limit: number, peerToId: function)
+See [peer-set](https://github.com/nicola/js-peer-set) APIs.
+
+## const set = new PeerSetCyclon(peers, {limit: number, peerToId: function)
 
 Creates a set of peers with an array of peers, a max size and a function to get the peerId from a peer object. By default, peer objects are assumed to be PeerInfo.
 
-## set.sample(limit)
+## set.updateAge()
 
-Randomly sample a set of peers of size `limit`
+Updates age of each peer by 1
 
-## set.length
+## set.oldest()
 
-Get the amount of peers
-
-## set.peers
-
-Get the map of peers (`peerId` => `peerObj`)
-
-## set.get(peerObj)
-## set.remove(peerObj)
-## set.forEach(peer)
-## set.add(peers, replaceable)
-
-Adds an array of peers. When adding peers, if going over the limit, then, replace the ones in `replaceable`
-## set.on('add', (peer) => {})
-
-Triggered when a new peer is added to the set
-
-## set.on('remove', (peer) => {})
-
-Triggered when a new peer is removed from the set
+Get the oldest peer in the set
 
 # License
 
