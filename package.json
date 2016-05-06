@@ -1,0 +1,36 @@
+{
+  "name": "peer-set-cyclon",
+  "version": "0.1.0",
+  "description": "Set of peers with Cyclon semantics",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "peer-set": "^0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "standard": "^7.0.1",
+    "chai": "^3.5.0"
+  },
+  "scripts": {
+    "test": "standard && mocha --harmony_default_parameters",
+    "lint": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicola/js-peer-set-cyclon.git"
+  },
+  "keywords": [
+    "peer",
+    "p2p",
+    "cyclon"
+  ],
+  "author": "Nicola Greco <me@nicola.io> (http://nicolagreco.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicola/js-peer-set-cyclon/issues"
+  },
+  "homepage": "https://github.com/nicola/js-peer-set-cyclon"
+}
