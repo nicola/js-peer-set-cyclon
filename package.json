@@ -1,6 +1,6 @@
 {
   "name": "peer-set-cyclon",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Set of neighboors for the gossip protocol Cyclon",
   "main": "src/index.js",
   "directories": {
